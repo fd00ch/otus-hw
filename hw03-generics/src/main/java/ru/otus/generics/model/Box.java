@@ -6,18 +6,18 @@ import java.util.List;
 public class Box<T extends Fruit> implements Comparable<Box<? extends Fruit>> {
     private List<T> fruits = new ArrayList<>();
 
-    public int weight() {
+    public float weight() {
         return fruits.stream()
-                .mapToInt(Fruit::getWeight)
-                .sum();
+                .map(Fruit::getWeight)
+                .reduce(0f, Float::sum);
     }
 
-    public void add(T t) {
-        fruits.add(t);
+    public void add(T fruit) {
+        fruits.add(fruit);
     }
 
-    public void addAll(List<T> tList) {
-        fruits.addAll(tList);
+    public void addAll(List<? extends T> fruits) {
+        this.fruits.addAll(fruits);
     }
 
     public List<T> getFruits() {
@@ -34,7 +34,11 @@ public class Box<T extends Fruit> implements Comparable<Box<? extends Fruit>> {
 
     @Override
     public int compareTo(Box<? extends Fruit> o) {
-        return Integer.compare(weight(), o.weight());
+        final float epsilon = 0.001f;
+        if(Math.abs(weight() - o.weight()) < epsilon) {
+            return 0;
+        }
+        return Float.compare(weight(), o.weight());
     }
 
     @Override
