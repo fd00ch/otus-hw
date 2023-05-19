@@ -41,4 +41,22 @@ class BoxManagerTest {
         assertEquals(30, appleBox1.getFruits().size());
     }
 
+    @Test
+    void moveContentToNullBox() {
+        Box<Apple> appleBox1 = BoxBuilder.buildAppleBox(30, 100.1f);
+
+        BoxManager.moveContentToAnotherBox(null, appleBox1);
+
+        assertEquals(30, appleBox1.getFruits().size());
+    }
+
+    @Test
+    void moveContentFromNullBox() {
+        Box<Apple> appleBox1 = BoxBuilder.buildAppleBox(30, 100.1f);
+
+        BoxManager.moveContentToAnotherBox(appleBox1, null);
+
+        assertEquals(30, appleBox1.getFruits().size());
+    }
+
 }
