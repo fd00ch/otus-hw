@@ -27,3 +27,5 @@ hw03-generics/.idea
 hw02-unittest/.gradle
 hw02-unittest/.idea
 hw02-unittest/build
+hw05-annotation-processor/.idea
+hw05-annotation-processor/.gradle
