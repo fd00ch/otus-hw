@@ -2,6 +2,7 @@ package ru.otus.teststarter;
 
 import org.reflections.Reflections;
 import org.reflections.scanners.Scanners;
+import ru.otus.exception.MyTestFrameworkException;
 import ru.otus.testannotations.After;
 import ru.otus.testannotations.Before;
 import ru.otus.testannotations.Test;
@@ -11,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class TestStarter {
     private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(TestStarter.class);
@@ -46,9 +48,32 @@ public class TestStarter {
         var beforeMethods = getMethodsAnnotatedWith(allClassMethods, Before.class);
         var testMethods = getMethodsAnnotatedWith(allClassMethods, Test.class);
         var afterMethods = getMethodsAnnotatedWith(allClassMethods, After.class);
+        checkTestAnnotationsIntersection(beforeMethods, testMethods, afterMethods);
 
         var testResults = invokeTests(testClassInstance, beforeMethods, testMethods, afterMethods);
         printTestStatistic(testResults);
+    }
+
+    private static void checkTestAnnotationsIntersection(
+            Method[] beforeMethods, Method[] testMethods, Method[] afterMethods) {
+        var beforeAndTestIntersection = getIntersection(beforeMethods, testMethods);
+        var beforeAndAfterIntersection = getIntersection(beforeMethods, afterMethods);
+        var testAndAfterIntersection = getIntersection(testMethods, afterMethods);
+
+        Consumer<Method> throwIncompatibleException = (Method method) -> {
+            throw new MyTestFrameworkException("Method '%s' annotated with incompatible annotations".formatted(method.getName()));
+        };
+
+        Arrays.stream(beforeAndTestIntersection).forEach(throwIncompatibleException);
+        Arrays.stream(beforeAndAfterIntersection).forEach(throwIncompatibleException);
+        Arrays.stream(testAndAfterIntersection).forEach(throwIncompatibleException);
+    }
+
+    private static Method[] getIntersection(Method[] a, Method[] b) {
+        return Arrays.stream(a)
+                .distinct()
+                .filter(x -> Arrays.asList(b).contains(x))
+                .toArray(Method[]::new);
     }
 
     private static TestResults invokeTests(
