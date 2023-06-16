@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+}
+
+sourceCompatibility = 17
+targetCompatibility = 17
+
+group = 'ru.calculator'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
