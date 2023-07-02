@@ -31,3 +31,5 @@ hw04-annotations/.idea
 hw05-annotation-processor/.idea
 hw05-annotation-processor/.gradle
 hw06-gc/.idea
+hw07-auto-log-proxy/.idea
+hw07-auto-log-aspectj/.idea
