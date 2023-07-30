@@ -1,6 +1,5 @@
 package ru.otus.serialization.serializers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ru.otus.serialization.model.output.SmsOutput;
 
@@ -12,19 +11,8 @@ public class JsonSmsSerializer implements SmsSerializer {
     private final ObjectMapper jsonMapper = new ObjectMapper();
 
     @Override
-    public String serialize(SmsOutput obj) throws JsonProcessingException {
-//        return jsonMapper.writeValueAsString(obj);
-        return jsonMapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj); // pretty print
-    }
-
-    @Override
     public void serialize(File file, SmsOutput obj) throws IOException {
         jsonMapper.writeValue(file, obj);
-    }
-
-    @Override
-    public SmsOutput deserialize(String serialized) throws JsonProcessingException {
-        return jsonMapper.readValue(serialized, SmsOutput.class);
     }
 
     @Override

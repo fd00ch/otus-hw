@@ -1,6 +1,5 @@
 package ru.otus.serialization.serializers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
@@ -19,23 +18,9 @@ public class CsvSmsSerializer implements SmsSerializer {
     private final CSV2SmsConverter csv2SmsConverter = new CSV2SmsConverter();
 
     @Override
-    public String serialize(SmsOutput smsOutput) throws JsonProcessingException {
-        var csvObject = sms2CSVConverter.apply(smsOutput);
-        BelongNumberMessagesCSVOutput[] msgs = csvObject.toArray(new BelongNumberMessagesCSVOutput[0]);
-        CsvSchema csvSchema = csvMapper
-                .schemaFor(BelongNumberMessagesCSVOutput.class)
-                .withHeader();
-        return csvMapper.writerFor(BelongNumberMessagesCSVOutput[].class)
-                .with(csvSchema)
-                .writeValueAsString(msgs);
-    }
-
-
-    @Override
     public void serialize(File file, SmsOutput smsOutput) throws IOException {
         var csvObject = sms2CSVConverter.apply(smsOutput);
         BelongNumberMessagesCSVOutput[] msgs = csvObject.toArray(new BelongNumberMessagesCSVOutput[0]);
-        CsvMapper csvMapper = new CsvMapper();
         CsvSchema csvSchema = csvMapper
                 .schemaFor(BelongNumberMessagesCSVOutput.class)
                 .withHeader();
@@ -45,14 +30,8 @@ public class CsvSmsSerializer implements SmsSerializer {
     }
 
     @Override
-    public SmsOutput deserialize(String serialized) {
-        return null;
-    }
-
-    @Override
     public SmsOutput deserialize(File file) throws IOException {
         CsvSchema objectLineSchema = CsvSchema.emptySchema().withHeader();
-        CsvMapper csvMapper = new CsvMapper();
         try (MappingIterator<BelongNumberMessagesCSVOutput> objectLines = csvMapper.readerFor(BelongNumberMessagesCSVOutput.class)
                 .with(objectLineSchema)
                 .readValues(file)) {
