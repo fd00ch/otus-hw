@@ -23,4 +23,8 @@ public abstract class SmsSerializeStrategy {
         public SmsOutput deserialize(File file) throws IOException {
                 return smsSerializer.deserialize(file);
         }
+
+        public SmsSerializer getSmsSerializer() {
+                return smsSerializer;
+        }
 }

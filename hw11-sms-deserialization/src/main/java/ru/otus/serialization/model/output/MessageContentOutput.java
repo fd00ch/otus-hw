@@ -7,7 +7,7 @@ import java.util.Date;
 
 public record MessageContentOutput(
         @JsonProperty("send_date")
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy hh:mm:ss", timezone = "Europe/Moscow")
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy'T'hh:mm:ss", timezone = "Europe/Moscow")
         Date sendDate,
         @JsonProperty("text")
         String text) {

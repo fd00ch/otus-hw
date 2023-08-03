@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class YamlSmsSerializer implements SmsSerializer {
-    private static final String JSON_EXTENSION = ".yml";
+    private static final String YML_EXTENSION = "yml";
     private final ObjectMapper ymlMapper = new ObjectMapper(new YAMLFactory());
 
     @Override
@@ -19,5 +19,10 @@ public class YamlSmsSerializer implements SmsSerializer {
     @Override
     public SmsOutput deserialize(File file) throws IOException {
         return ymlMapper.readValue(file, SmsOutput.class);
+    }
+
+    @Override
+    public String getExtension() {
+        return YML_EXTENSION;
     }
 }

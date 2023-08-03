@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class CsvSmsSerializer implements SmsSerializer {
-    private static final String CSV_EXTENSION = ".csv";
+    private static final String CSV_EXTENSION = "csv";
     private final CsvMapper csvMapper = new CsvMapper();
     private final Sms2CSVConverter sms2CSVConverter = new Sms2CSVConverter();
     private final CSV2SmsConverter csv2SmsConverter = new CSV2SmsConverter();
@@ -39,5 +39,10 @@ public class CsvSmsSerializer implements SmsSerializer {
             var deserialized = csv2SmsConverter.apply(objectList);
             return deserialized;
         }
+    }
+
+    @Override
+    public String getExtension() {
+        return CSV_EXTENSION;
     }
 }
