@@ -36,3 +36,6 @@ hw07-auto-log-aspectj/.idea
 hw08-atm-emulator/.idea
 hw09-structural-patterns/.idea
 hw11-sms-deserialization/.idea
+hw16-ioc/.idea
+hw16-ioc/build
+hw16-ioc/.gradle
