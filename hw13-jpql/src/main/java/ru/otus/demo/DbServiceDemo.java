@@ -14,8 +14,6 @@ import ru.otus.crm.service.DbServiceClientImpl;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
 public class DbServiceDemo {
 
     private static final Logger log = LoggerFactory.getLogger(DbServiceDemo.class);
@@ -44,7 +42,7 @@ public class DbServiceDemo {
         var firstClientPhone2 = new Phone("+79998886666");
         var firstClient = new Client("dbServiceFirst");
         firstClient.setAddress(firstClientAddress);
-        firstClient.addPhones(asList(firstClientPhone1, firstClientPhone2));
+        firstClient.addPhones(List.of(firstClientPhone1, firstClientPhone2));
         dbServiceClient.saveClient(firstClient);
 
         var secondClientAddress = new Address("5, Baker str.");

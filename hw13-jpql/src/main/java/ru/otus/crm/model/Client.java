@@ -4,6 +4,7 @@ package ru.otus.crm.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 @Table(name = "client")
 @NamedEntityGraph(
         name = "client-eg",
@@ -35,7 +37,7 @@ public class Client implements Cloneable {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     @OrderBy("id")
     private List<Phone> phones = new ArrayList<>();
 
@@ -61,13 +63,5 @@ public class Client implements Cloneable {
         var clonedClient = new Client(this.id, this.name, this.address, this.phones);
         clonedClient.addPhones(this.phones);
         return clonedClient;
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }
