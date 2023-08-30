@@ -1,5 +1,8 @@
 package ru.otus.model;
 
+import lombok.Getter;
+
+@Getter
 public enum Currency {
     USD (0, "USD", '$'),
     EUR (1, "EUR", '€'),
@@ -13,18 +16,6 @@ public enum Currency {
         this.id = id;
         this.viewName = viewName;
         this.symbol = symbol;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getViewName() {
-        return viewName;
-    }
-
-    public char getSymbol() {
-        return symbol;
     }
 
     public static Currency getById(int id) {
