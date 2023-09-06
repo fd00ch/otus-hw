@@ -14,7 +14,6 @@ public class BanknoteCell {
         if (count < 0) {
             throw new IllegalArgumentException("Count must be positive");
         }
-
         this.banknote = banknote;
         this.count = count;
     }

@@ -57,7 +57,7 @@ class ATMMachineServiceTest {
     }
 
     @Test
-    void deposit6600() {
+    void testDeposit6600Success() {
         int initialSum = atmMachineService.getRemainingMoney(atmMachine, Currency.RUB);
         Map<Banknote, Integer> banknotesForDeposit = Map.of(
                 banknoteRub100, 1,
@@ -70,7 +70,7 @@ class ATMMachineServiceTest {
     }
 
     @Test
-    void withdrawMoreThanHave() {
+    void testWithdrawMoreThanHaveFail() {
         int minimumBanknoteDenomination = atmMachineService.getMinimumBanknoteDenomination(atmMachine, Currency.RUB);
         int illegalSumToCharge = atmMachineService.getRemainingMoney(atmMachine, Currency.RUB) + minimumBanknoteDenomination;
         Exception thrown = assertThrows(IllegalStateException.class, () ->
@@ -79,7 +79,7 @@ class ATMMachineServiceTest {
     }
 
     @Test
-    void withdrawInvalidAmount() {
+    void testWithdrawInvalidAmountFail() {
         int minimumBanknoteDenomination = atmMachineService.getMinimumBanknoteDenomination(atmMachine, Currency.RUB);
         int invalidBanknoteDenomination = minimumBanknoteDenomination - 1;
         int illegalSumToWithdraw = atmMachineService.getRemainingMoney(atmMachine, Currency.RUB)
@@ -90,7 +90,7 @@ class ATMMachineServiceTest {
     }
 
     @Test
-    void withdraw6600Rub() {
+    void testWithdraw6600RubSuccess() {
         var banknoteRub100Count = 1;
         var banknoteRub500Count = 1;
         var banknoteRub1000Count = 1;
@@ -118,7 +118,7 @@ class ATMMachineServiceTest {
     }
 
     @Test
-    void withdraw5100Rub() {
+    void testWithdraw5100RubSuccess() {
         var banknoteRub100Count = 1;
         var banknoteRub500Count = 0;
         var banknoteRub1000Count = 0;
@@ -146,7 +146,7 @@ class ATMMachineServiceTest {
     }
 
     @Test
-    void getRemainingMoney() {
+    void testGetRemainingMoneySuccess() {
         var rubRemainingAmount = atmMachineService.getRemainingMoney(atmMachine, Currency.RUB);
         var usdRemainingAmount = atmMachineService.getRemainingMoney(atmMachine, Currency.USD);
         var eurRemainingAmount = atmMachineService.getRemainingMoney(atmMachine, Currency.EUR);
