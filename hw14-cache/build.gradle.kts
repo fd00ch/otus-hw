@@ -24,10 +24,10 @@ allprojects {
     }
 }
 
-
 dependencies {
     implementation("org.slf4j:slf4j-simple:2.0.5")
     implementation("org.flywaydb:flyway-core:9.22.1")
     implementation("org.postgresql:postgresql:42.6.0")
     implementation("org.ehcache:ehcache:3.10.8")
+    implementation("com.zaxxer:HikariCP:5.0.1")
 }
