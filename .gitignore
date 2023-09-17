@@ -40,3 +40,6 @@ hw13-jpql/.idea
 hw16-ioc/.idea
 hw16-ioc/build
 hw16-ioc/.gradle
+hw14-cache/.gradle
+hw14-cache/.idea
+hw14-cache/build
