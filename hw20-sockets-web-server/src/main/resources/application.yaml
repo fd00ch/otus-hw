@@ -1,0 +1,16 @@
+server:
+    port: 8080
+    max-connections: 10
+uri-mapping:
+  -
+    uri: /index.html
+    path: static/index.html
+  -
+    uri: /first.html
+    path: static/first.html
+  -
+    uri: /second.html
+    path: static/second.html
+  -
+    uri: /third.html
+    path: static/third.html
