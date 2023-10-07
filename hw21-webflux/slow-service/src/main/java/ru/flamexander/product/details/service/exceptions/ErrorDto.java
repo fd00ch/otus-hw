@@ -1,4 +1,4 @@
-package ru.flamexander.reactive.service.exceptions;
+package ru.flamexander.product.details.service.exceptions;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
