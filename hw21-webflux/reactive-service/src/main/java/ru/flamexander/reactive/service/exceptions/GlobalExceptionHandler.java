@@ -10,7 +10,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AppException.class)
     public ResponseEntity<ErrorDto> handleAppException(AppException e) {
         return new ResponseEntity<>(
-                new ErrorDto(e.getCode()), HttpStatus.INTERNAL_SERVER_ERROR
-        );
+                new ErrorDto(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage()),
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

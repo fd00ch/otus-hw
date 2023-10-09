@@ -1,13 +1,13 @@
 package ru.flamexander.reactive.service.exceptions;
 
 public class AppException extends RuntimeException {
-    private String code;
+    private String message;
 
-    public String getCode() {
-        return code;
+    public String getMessage() {
+        return message;
     }
 
-    public AppException(String code) {
-        this.code = code;
+    public AppException(String message) {
+        this.message = message;
     }
 }
