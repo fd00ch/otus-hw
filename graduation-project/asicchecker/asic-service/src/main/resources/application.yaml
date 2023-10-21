@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: asic-service
+
+server:
+  port: 8071

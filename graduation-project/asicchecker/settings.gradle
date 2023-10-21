@@ -1,0 +1,4 @@
+rootProject.name = 'asicchecker'
+include 'asic-service'
+include 'telegram-service'
+
