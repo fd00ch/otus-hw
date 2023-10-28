@@ -4,3 +4,13 @@ spring:
 
 server:
   port: 8071
+
+springdoc:
+  swagger-ui:
+    path: /api.html
+    displayRequestDuration: true
+    operationsSorter: alpha
+    tagsSorter: alpha
+  model-converters:
+    pageable-converter:
+      enabled: true

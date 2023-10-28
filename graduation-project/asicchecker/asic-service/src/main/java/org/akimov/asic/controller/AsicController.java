@@ -1,5 +1,6 @@
 package org.akimov.asic.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.akimov.asic.model.Status;
 import org.akimov.asic.model.Summary;
@@ -13,12 +14,14 @@ public class AsicController {
     private final AsicService asicService;
 
     @GetMapping("/asic/status")
+    @Operation(summary = "Get asic status")
     public Status getAsicStatus() {
         var status = asicService.getStatus();
         return status;
     }
 
     @GetMapping("/asic/summary")
+    @Operation(summary = "Get asic summary")
     public Summary getAsicSummary() {
         var summary = asicService.getSummary();
         return summary;
