@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: asic-service
+
+server:
+  port: 8072
+
+bot:
+  name: ${BOT_NAME}
+  token: ${BOT_TOKEN}
