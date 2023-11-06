@@ -1,4 +1,4 @@
-package org.akimov.asic.model;
+package org.akimov.asic.model.status;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
