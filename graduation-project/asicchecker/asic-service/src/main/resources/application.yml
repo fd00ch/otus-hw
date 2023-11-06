@@ -39,3 +39,6 @@ logging:
     name: /opt/asicchecker/logs/asicservice/asicservice.log
   level:
     root: INFO
+
+app:
+  asic-url: ${ASIC_URL}
