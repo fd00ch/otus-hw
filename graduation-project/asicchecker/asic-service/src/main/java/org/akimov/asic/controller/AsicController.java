@@ -14,6 +14,7 @@ public class AsicController {
     private final AsicService asicService;
 
     @GetMapping("/asic/status")
+    @TrackExecutionTime
     @Operation(summary = "Get asic status")
     public Status getAsicStatus() {
         var status = asicService.getStatus();
@@ -21,6 +22,7 @@ public class AsicController {
     }
 
     @GetMapping("/asic/summary")
+    @TrackExecutionTime
     @Operation(summary = "Get asic summary")
     public Summary getAsicSummary() {
         var summary = asicService.getSummary();
