@@ -33,3 +33,9 @@ management:
     metrics:
       export:
         enabled: true
+
+logging:
+  file:
+    name: /opt/asicchecker/logs/asicservice/asicservice.log
+  level:
+    root: INFO
