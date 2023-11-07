@@ -1,5 +1,8 @@
 package org.akimov.service.processors;
 
+import lombok.Getter;
+
+@Getter
 public enum CmdRegistry {
     HR("/hr", "messageProcessorHashRate"),
     TEMP("/temp", "messageProcessorTemp");
@@ -12,11 +15,4 @@ public enum CmdRegistry {
         this.handlerName = handlerName;
     }
 
-    public String getCmd() {
-        return cmd;
-    }
-
-    public String getHandlerName() {
-        return handlerName;
-    }
 }
