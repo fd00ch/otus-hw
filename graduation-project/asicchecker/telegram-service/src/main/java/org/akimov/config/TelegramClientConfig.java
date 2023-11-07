@@ -10,6 +10,6 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 public class TelegramClientConfig {
-    String telegramBotToken;
+    String botToken;
     Long allowedChatId;
 }
