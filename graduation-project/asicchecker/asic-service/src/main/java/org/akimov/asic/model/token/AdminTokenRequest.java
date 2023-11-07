@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class AdminTokenRequest {
-    @JsonProperty("pwd")
-    private String password;
+    @JsonProperty("pw")
+    private String pw;
 }
