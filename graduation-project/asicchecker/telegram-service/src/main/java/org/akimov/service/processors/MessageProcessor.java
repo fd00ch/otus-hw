@@ -1,6 +1,6 @@
 package org.akimov.service.processors;
 
-import org.akimov.model.TelegramMessage;
+import org.akimov.model.telegram.TelegramMessage;
 
 import java.util.function.Consumer;
 

@@ -2,7 +2,7 @@ package org.akimov.service;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
-import org.akimov.model.TelegramMessage;
+import org.akimov.model.telegram.TelegramMessage;
 import org.akimov.service.processors.MessageProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

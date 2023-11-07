@@ -1,4 +1,4 @@
-package org.akimov.model;
+package org.akimov.model.telegram;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
