@@ -17,11 +17,12 @@ public class AccessChecker {
         return Objects.equals(chatId, telegramClientConfig.getAllowedChatId());
     }
 
-    public void checkAccess(Long chatId, Consumer<Long> sendAccessDenied) {
+    public boolean checkAccess(Long chatId, Consumer<Long> sendAccessDenied) {
         var accessGranted = Objects.equals(chatId, telegramClientConfig.getAllowedChatId());
         if (!accessGranted) {
             log.info("Access denied for chatId: {}", chatId);
             sendAccessDenied.accept(chatId);
         }
+        return accessGranted;
     }
 }

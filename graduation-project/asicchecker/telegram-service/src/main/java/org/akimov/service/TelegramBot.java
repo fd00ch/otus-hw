@@ -46,11 +46,11 @@ public class TelegramBot extends TelegramLongPollingBot {
         Long chatId = update.getMessage().getChatId();
         log.info("Receive new Update. updateID: %d, chatId: %d".formatted(update.getUpdateId(), chatId));
         Consumer<Long> sendAccessDenied = (chatIdParam) -> sendTelegramMsg(chatIdParam, "Access denied");
-        accessChecker.checkAccess(chatId, sendAccessDenied);
-
-        Consumer<TelegramMessage> sendTelegramMessage = this::sendTelegramMsg;
-        String inputText = update.getMessage().getText();
-        messageProcessor.process(chatId, inputText, sendTelegramMessage);
+        if (accessChecker.checkAccess(chatId, sendAccessDenied)) {
+            Consumer<TelegramMessage> sendTelegramMessage = this::sendTelegramMsg;
+            String inputText = update.getMessage().getText();
+            messageProcessor.process(chatId, inputText, sendTelegramMessage);
+        }
     }
 
     public void sendTelegramMsg(Long chatId, String text) {
