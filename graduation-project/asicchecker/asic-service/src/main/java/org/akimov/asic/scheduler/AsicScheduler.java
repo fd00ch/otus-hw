@@ -69,7 +69,7 @@ public class AsicScheduler {
         meterRegistry.gauge("chain3Voltage", chain3Voltage);
     }
 
-    @Scheduled(fixedRate = 10_000)
+    @Scheduled(cron = "*/10 * * * * *") // every 10 seconds
     public void updateMainParameters() {
         var summary = asicService.getSummary();
         averageHashrate.set((int) summary.getMiner().getAverageHashrate());
