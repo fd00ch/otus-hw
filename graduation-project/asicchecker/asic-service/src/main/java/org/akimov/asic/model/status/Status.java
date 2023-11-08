@@ -8,19 +8,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Status {
     @JsonProperty("miner_state")
-    private String miner_state;
+    private String minerState;
 
     @JsonProperty("miner_state_time")
-    private float miner_state_time;
+    private float minerStateTime;
 
     @JsonProperty("find_miner")
-    private boolean find_miner;
+    private boolean findMiner;
 
     @JsonProperty("restart_required")
-    private boolean restart_required;
+    private boolean restartRequired;
 
     @JsonProperty("reboot_required")
-    private boolean reboot_required;
+    private boolean rebootRequired;
 
     @JsonProperty("unlocked")
     private boolean unlocked;
