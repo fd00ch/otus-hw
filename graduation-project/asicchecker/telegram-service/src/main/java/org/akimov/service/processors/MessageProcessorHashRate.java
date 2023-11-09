@@ -19,6 +19,6 @@ public class MessageProcessorHashRate implements MessageProcessor {
         log.info("msgText:{}", msgText);
         var asicSummary = asicServiceFeignClient.getAsicSummary();
         var hashRate = asicSummary.getMiner().getAverageHashrate();
-        telegramMessageConsumer.accept(new TelegramMessage(chatId, "Hash rate: %.2f Th".formatted(hashRate)));
+        telegramMessageConsumer.accept(new TelegramMessage(chatId, "Hash rate: %.2f Th/s".formatted(hashRate)));
     }
 }

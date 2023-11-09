@@ -19,6 +19,6 @@ public class MessageProcessorPower implements MessageProcessor {
         log.info("msgText:{}", msgText);
         var asicSummary = asicServiceFeignClient.getAsicSummary();
         var powerUsage = asicSummary.getMiner().getPowerUsage();
-        telegramMessageConsumer.accept(new TelegramMessage(chatId, "Power usage: %f kWh".formatted(powerUsage)));
+        telegramMessageConsumer.accept(new TelegramMessage(chatId, "Power usage: %.2f kW".formatted(powerUsage)));
     }
 }

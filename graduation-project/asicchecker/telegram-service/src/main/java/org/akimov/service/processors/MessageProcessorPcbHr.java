@@ -11,18 +11,18 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service("messageProcessorFans")
-public class MessageProcessorFans implements MessageProcessor {
+@Service("messageProcessorPcbHr")
+public class MessageProcessorPcbHr implements MessageProcessor {
     private final AsicServiceFeignClient asicServiceFeignClient;
 
     @Override
     public void process(Long chatId, String msgText, Consumer<TelegramMessage> telegramMessageConsumer) {
         log.info("msgText:{}", msgText);
         var asicSummary = asicServiceFeignClient.getAsicSummary();
-        var fans = asicSummary.getMiner().getCooling().getFans();
-        var fanRpms = fans.stream()
-                .map(fan -> "Fan%d: %d rpm".formatted(fan.getId(), fan.getRpm()))
+        var chains = asicSummary.getMiner().getChains();
+        var chainsHr = chains.stream()
+                .map(chain -> "Pcb%d hash rate: %.2f Th/s".formatted(chain.getId(), chain.getHashrateRt()/1000f))
                 .collect(Collectors.joining("\n"));
-        telegramMessageConsumer.accept(new TelegramMessage(chatId, fanRpms));
+        telegramMessageConsumer.accept(new TelegramMessage(chatId, chainsHr));
     }
 }

@@ -7,7 +7,11 @@ public enum CmdRegistry {
     HR("/hr", "messageProcessorHashRate"),
     TEMP("/temp", "messageProcessorTemp"),
     PWR("/pwr", "messageProcessorPower"),
-    FANS("/fans", "messageProcessorFans");
+    FANS("/fans", "messageProcessorFans"),
+    PCB_HR("/pcbhr", "messageProcessorPcbHr"),
+    PCB_TEMP("/pcbtemp", "messageProcessorPcbTemp"),
+    PCB_PWR("/pcbpwr", "messageProcessorPcbPwr"),
+    PCB_VOLT("/pcbvolt", "messageProcessorPcbVolt");
 
     private final String cmd;
     private final String handlerName;
