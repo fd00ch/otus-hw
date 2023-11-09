@@ -3,7 +3,7 @@ package org.akimov.service.processors;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import org.akimov.model.telegram.TelegramMessage;
+import org.akimov.model.dto.telegram.TelegramMessage;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Consumer;

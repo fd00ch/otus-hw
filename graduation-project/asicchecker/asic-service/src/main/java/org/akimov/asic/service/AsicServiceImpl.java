@@ -2,8 +2,8 @@ package org.akimov.asic.service;
 
 import lombok.RequiredArgsConstructor;
 import org.akimov.asic.integrations.AsicIntegration;
-import org.akimov.asic.model.status.Status;
-import org.akimov.asic.model.summary.Summary;
+import org.akimov.asic.model.dto.status.Status;
+import org.akimov.asic.model.dto.summary.Summary;
 import org.springframework.stereotype.Service;
 
 

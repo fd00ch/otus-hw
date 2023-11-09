@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.akimov.exception.BotException;
-import org.akimov.model.telegram.TelegramMessage;
+import org.akimov.model.dto.telegram.TelegramMessage;
 import org.akimov.service.TelegramBot;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.context.annotation.Bean;

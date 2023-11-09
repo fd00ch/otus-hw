@@ -1,7 +1,7 @@
 package org.akimov.service.processors;
 
 import lombok.extern.slf4j.Slf4j;
-import org.akimov.model.telegram.TelegramMessage;
+import org.akimov.model.dto.telegram.TelegramMessage;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Primary;

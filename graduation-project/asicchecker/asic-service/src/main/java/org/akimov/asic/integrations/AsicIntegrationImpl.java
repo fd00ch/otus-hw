@@ -1,10 +1,10 @@
 package org.akimov.asic.integrations;
 
 import lombok.RequiredArgsConstructor;
-import org.akimov.asic.model.status.Status;
-import org.akimov.asic.model.summary.Summary;
-import org.akimov.asic.model.token.AdminTokenRequest;
-import org.akimov.asic.model.token.AdminTokenResponse;
+import org.akimov.asic.model.dto.status.Status;
+import org.akimov.asic.model.dto.summary.Summary;
+import org.akimov.asic.model.dto.token.AdminTokenRequest;
+import org.akimov.asic.model.dto.token.AdminTokenResponse;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;

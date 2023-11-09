@@ -1,7 +1,7 @@
 package org.akimov.intergation;
 
-import org.akimov.model.status.Status;
-import org.akimov.model.summary.Summary;
+import org.akimov.model.dto.status.Status;
+import org.akimov.model.dto.summary.Summary;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
