@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum CmdRegistry {
     HR("/hr", "messageProcessorHashRate"),
     TEMP("/temp", "messageProcessorTemp"),
+    PWR("/pwr", "messageProcessorPower"),
     FANS("/fans", "messageProcessorFans");
 
     private final String cmd;
