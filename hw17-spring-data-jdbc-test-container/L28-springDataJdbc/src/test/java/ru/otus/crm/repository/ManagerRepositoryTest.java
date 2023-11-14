@@ -31,8 +31,8 @@ class ManagerRepositoryTest extends AbstractIntegrationTest {
     @Autowired
     private ManagerRepository managerRepository;
 
-    private static final String MANAGER1_NAME = "m:" + System.currentTimeMillis();
-    private static final String MANAGER2_NAME = "m:" + System.currentTimeMillis();
+    private static final String MANAGER1_NAME = "m:" + "1699989591001";
+    private static final String MANAGER2_NAME = "m:" + "1699989591002";
     private static final String MANAGER1_LABEL = "ManagerFirst";
     private static final String MANAGER2_LABEL = "ManagerSecond";
     private static final String CLIENT1_NAME = "managClient1";
