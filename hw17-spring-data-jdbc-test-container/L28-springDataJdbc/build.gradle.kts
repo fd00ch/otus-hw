@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
 dependencies {
     dependencies {
         implementation ("ch.qos.logback:logback-classic")
@@ -14,5 +16,17 @@ dependencies {
         testImplementation("org.testcontainers:junit-jupiter")
         testImplementation("org.testcontainers:postgresql")
         testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+    testLogging.showExceptions = true
+    testLogging.exceptionFormat = TestExceptionFormat.FULL
+    testLogging.events("started", "skipped", "passed", "failed")
+    testLogging.showStandardStreams = true
+    reports {
+        junitXml.required.set(true)
+        html.required.set(true)
     }
 }
