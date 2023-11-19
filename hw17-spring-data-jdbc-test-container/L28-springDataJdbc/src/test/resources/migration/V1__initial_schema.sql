@@ -1,4 +1,4 @@
-create table Manager
+create table manager
 (
     id    varchar(50) not null primary key,
     label varchar(50)
