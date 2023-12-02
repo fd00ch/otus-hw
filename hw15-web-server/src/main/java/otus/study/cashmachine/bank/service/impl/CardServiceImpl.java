@@ -1,5 +1,7 @@
 package otus.study.cashmachine.bank.service.impl;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import otus.study.cashmachine.bank.dao.CardsDao;
 import otus.study.cashmachine.bank.data.Card;
 import otus.study.cashmachine.bank.service.AccountService;
@@ -10,16 +12,11 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HexFormat;
 
-
+@Service
+@RequiredArgsConstructor
 public class CardServiceImpl implements CardService {
-    AccountService accountService;
-
-    CardsDao cardsDao;
-
-    public CardServiceImpl(final AccountService accountService, final CardsDao cardsDao) {
-        this.accountService = accountService;
-        this.cardsDao = cardsDao;
-    }
+    private final AccountService accountService;
+    private final CardsDao cardsDao;
 
     @Override
     public Card createCard(String number, Long accountId, String pinCode) {
@@ -39,6 +36,8 @@ public class CardServiceImpl implements CardService {
             card.setPinCode(getHash(newPin));
             cardsDao.saveCard(card);
             return true;
+        } catch (IllegalArgumentException e) {
+            throw e;
         } catch (Exception e) {
             return false;
         }

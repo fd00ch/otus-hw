@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM</title>
+</head>
+<body>
+    <h1>Get balance</h1>
+    <form th:method="POST" th:action="@{/atm/get-balance-result}" th:object="${cardpin}">
+        <label for="card-num">Card number: </label>
+        <input type="text" th:field="*{cardNumber}" id="card-num" placeholder="1111"/>
+        <br/><br/>
+        <label for="pin">Pin code: </label>
+        <input type="text" th:field="*{pin}" id="pin" placeholder="0000"/>
+        <br/><br/>
+        <input type="submit" value="Get balance"/>
+        <br/><br/>
+        <input type="button" value="Go back" onclick='location.href="/"'>
+    </form>
+</body>
+</html>

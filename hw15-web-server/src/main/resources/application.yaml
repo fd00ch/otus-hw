@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: cashmachine
+
+server:
+  port: 8085

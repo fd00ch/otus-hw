@@ -1,17 +1,13 @@
 package otus.study.cashmachine.machine.data;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
+@Component
+@RequiredArgsConstructor
 public class CashMachine {
-    private MoneyBox moneyBox;
-
-    public CashMachine(final MoneyBox moneyBox) {
-        this.moneyBox = moneyBox;
-    }
-
+    private final MoneyBox moneyBox;
     public MoneyBox getMoneyBox() {
         return moneyBox;
-    }
-
-    public void setMoneyBox(final MoneyBox moneyBox) {
-        this.moneyBox = moneyBox;
     }
 }
