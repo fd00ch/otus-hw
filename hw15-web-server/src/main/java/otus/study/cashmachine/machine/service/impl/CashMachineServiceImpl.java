@@ -1,6 +1,7 @@
 package otus.study.cashmachine.machine.service.impl;
 
-import otus.study.cashmachine.bank.service.AccountService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import otus.study.cashmachine.bank.service.CardService;
 import otus.study.cashmachine.machine.data.CashMachine;
 import otus.study.cashmachine.machine.service.CashMachineService;
@@ -11,24 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@Service
+@RequiredArgsConstructor
 public class CashMachineServiceImpl implements CashMachineService {
 
-    private CardService cardService;
-
-    private AccountService accountService;
-
-    private MoneyBoxService moneyBoxService;
-
-    public CashMachineServiceImpl(final CardService cardService, final AccountService accountService, final MoneyBoxService moneyBoxService) {
-        this.cardService = cardService;
-        this.accountService = accountService;
-        this.moneyBoxService = moneyBoxService;
-    }
+    private final CardService cardService;
+    private final MoneyBoxService moneyBoxService;
+    private final CashMachine machine;
 
     @Override
-    public List<Integer> getMoney(CashMachine machine, String cardNum, String pin, BigDecimal amount) {
+    public List<Integer> getMoney(String cardNum, String pin, BigDecimal amount) {
+        cardService.getMoney(cardNum, pin, amount);
         try {
-            BigDecimal sum = cardService.getMoney(cardNum, pin, amount);
             return moneyBoxService.getMoney(machine.getMoneyBox(), amount.intValue());
         } catch (Exception e) {
             cardService.putMoney(cardNum, pin, amount);
@@ -37,7 +32,7 @@ public class CashMachineServiceImpl implements CashMachineService {
     }
 
     @Override
-    public BigDecimal putMoney(CashMachine machine, String cardNum, String pin, List<Integer> notes) {
+    public BigDecimal putMoney(String cardNum, String pin, List<Integer> notes) {
         cardService.getBalance(cardNum, pin);
 
         List<Integer> arrangedNotes = new ArrayList<>(notes);
@@ -55,7 +50,7 @@ public class CashMachineServiceImpl implements CashMachineService {
     }
 
     @Override
-    public BigDecimal checkBalance(CashMachine machine, String cardNum, String pin) {
+    public BigDecimal checkBalance(String cardNum, String pin) {
         return cardService.getBalance(cardNum, pin);
     }
 

@@ -50,7 +50,7 @@ class CashMachineServiceTest {
 
     @BeforeEach
     void init() {
-        cashMachineService = new CashMachineServiceImpl(cardService, accountService, moneyBoxService);
+        cashMachineService = new CashMachineServiceImpl(cardService, accountService, moneyBoxService, cashMachine);
     }
 
 
@@ -60,8 +60,7 @@ class CashMachineServiceTest {
         doReturn(BigDecimal.TEN).when(cardService).getMoney("0000", "1111", BigDecimal.TEN);
         when(moneyBoxService.getMoney(any(), anyInt())).thenReturn(List.of(1, 1, 1, 1));
 
-        CashMachine cashMachine = new CashMachine(new MoneyBox());
-        List<Integer> result = cashMachineService.getMoney(cashMachine, "0000", "1111", BigDecimal.TEN);
+        List<Integer> result = cashMachineService.getMoney("0000", "1111", BigDecimal.TEN);
 
         assertEquals(List.of(1, 1, 1, 1), result);
     }
@@ -73,8 +72,7 @@ class CashMachineServiceTest {
         doReturn(BigDecimal.TEN).when(cardService).getBalance(CARD_NUMBER, PIN);
         doReturn(BigDecimal.valueOf(6610L)).when(cardService).putMoney(CARD_NUMBER, PIN, BigDecimal.valueOf(6600L));
 
-        CashMachine cashMachine = new CashMachine(new MoneyBox());
-        BigDecimal result = cashMachineService.putMoney(cashMachine, CARD_NUMBER, PIN, List.of(1, 1, 1, 1));
+        BigDecimal result = cashMachineService.putMoney(CARD_NUMBER, PIN, List.of(1, 1, 1, 1));
 
         assertEquals(BigDecimal.valueOf(6610L), result);
     }
@@ -82,8 +80,7 @@ class CashMachineServiceTest {
     @Test
     void checkBalance() {
         doReturn(BigDecimal.TEN).when(cardService).getBalance("0000", "1111");
-        CashMachine cashMachine = new CashMachine(new MoneyBox());
-        BigDecimal result = cashMachineService.checkBalance(cashMachine, "0000", "1111");
+        BigDecimal result = cashMachineService.checkBalance("0000", "1111");
 
         assertEquals(BigDecimal.TEN, result);
     }

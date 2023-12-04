@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ATM</title>
+</head>
+<body>
+    <h1>Put money</h1>
+    <form th:method="POST" th:action="@{/atm/put-money-result}" th:object="${putcash}">
+        <label for="card-num">Card number: </label>
+        <input type="text" th:field="*{cardNumber}" id="card-num" placeholder="1111"/>
+        <br/><br/>
+        <label for="pin">Pin code: </label>
+        <input type="text" th:field="*{pin}" id="pin" placeholder="0000"/>
+        <br/><br/>
+        <label for="amount100">Amount of banknote 100: </label>
+        <input type="text" th:field="*{amount100}" id="amount100"/>
+        <br/><br/>
+        <label for="amount500">Amount of banknote 500: </label>
+        <input type="text" th:field="*{amount500}" id="amount500"/>
+        <br/><br/>
+        <label for="amount1000">Amount of banknote 1000: </label>
+        <input type="text" th:field="*{amount1000}" id="amount1000"/>
+        <br/><br/>
+        <label for="amount5000">Amount of banknote 5000: </label>
+        <input type="text" th:field="*{amount5000}" id="amount5000"/>
+        <br/><br/>
+        <input type="submit" value="Confirm"/>
+        <br/><br/>
+        <input type="button" value="Go back" onclick='location.href="/"'>
+    </form>
+</body>
+</html>
