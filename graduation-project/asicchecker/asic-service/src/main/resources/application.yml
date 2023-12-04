@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: asic-service
+
+server:
+  port: 8071
+
+springdoc:
+  swagger-ui:
+    path: /api.html
+    displayRequestDuration: true
+    operationsSorter: alpha
+    tagsSorter: alpha
+  model-converters:
+    pageable-converter:
+      enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+    build:
+      enabled: true
+  metrics:
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+logging:
+  file:
+    name: /opt/asicchecker/logs/asicservice/asicservice.log
+  level:
+    root: INFO
+
+app:
+  asic-url: ${ASIC_URL}
