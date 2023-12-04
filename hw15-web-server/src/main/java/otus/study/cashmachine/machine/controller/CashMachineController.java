@@ -17,16 +17,28 @@ import java.util.List;
 @RequestMapping("/atm")
 @RequiredArgsConstructor
 public class CashMachineController {
+    public static final String INDEX_PAGE = "index";
+    public static final String ERROR_PAGE = "error";
+    public static final String ERROR_MSG_ATTRIBUTE = "errormsg";
+    public static final String CHANGE_PIN_PAGE = "change-pin";
+    public static final String CHANGE_PIN_RESULT_PAGE = "change-pin-result";
+    public static final String GET_BALANCE_PAGE = "get-balance";
+    public static final String GET_BALANCE_RESULT_PAGE = "get-balance-result";
+    public static final String GET_MONEY_PAGE = "get-money";
+    public static final String GET_MONEY_RESULT_PAGE = "get-money-result";
+    public static final String PUT_MONEY_PAGE = "put-money";
+    public static final String PUT_MONEY_RESULT_PAGE = "put-money-result";
+
     private final CashMachineService cashMachineService;
 
     @GetMapping("")
     public String index() {
-        return "index";
+        return INDEX_PAGE;
     }
 
     @GetMapping("/change-pin")
     public String changePin(@ModelAttribute("changepin") ChangePinRequestDTO changePinRequestDTO) {
-        return "change-pin";
+        return CHANGE_PIN_PAGE;
     }
 
     @PostMapping("/change-pin-result")
@@ -39,16 +51,16 @@ public class CashMachineController {
             if (!result) {
                 throw new RuntimeException("Pin change failed");
             }
-            return "change-pin-result";
+            return CHANGE_PIN_RESULT_PAGE;
         } catch (Exception e) {
-            model.addAttribute("errormsg", e.getMessage());
-            return "error";
+            model.addAttribute(ERROR_MSG_ATTRIBUTE, e.getMessage());
+            return ERROR_PAGE;
         }
     }
 
     @GetMapping("/get-balance")
     public String getBalance(@ModelAttribute("cardpin") CardPinRequestDTO cardPinRequestDTO) {
-        return "get-balance";
+        return GET_BALANCE_PAGE;
     }
 
     @PostMapping("/get-balance-result")
@@ -58,16 +70,16 @@ public class CashMachineController {
                     cardPinRequestDTO.getCardNumber(),
                     cardPinRequestDTO.getPin());
             model.addAttribute("balance", balance);
-            return "get-balance-result";
+            return GET_BALANCE_RESULT_PAGE;
         } catch (Exception e) {
-            model.addAttribute("errormsg", e.getMessage());
-            return "error";
+            model.addAttribute(ERROR_MSG_ATTRIBUTE, e.getMessage());
+            return ERROR_PAGE;
         }
     }
 
     @GetMapping("/get-money")
     public String getMoney(@ModelAttribute("withdraw") WithdrawCashRequestDTO withdrawCashRequestDTO) {
-        return "get-money";
+        return GET_MONEY_PAGE;
     }
 
     @PostMapping("/get-money-result")
@@ -77,16 +89,16 @@ public class CashMachineController {
                     withdrawCashRequestDTO.getCardNumber(),
                     withdrawCashRequestDTO.getPin(),
                     new BigDecimal(withdrawCashRequestDTO.getAmount()));
-            return "get-money-result";
+            return GET_MONEY_RESULT_PAGE;
         } catch (Exception e) {
-            model.addAttribute("errormsg", e.getMessage());
-            return "error";
+            model.addAttribute(ERROR_MSG_ATTRIBUTE, e.getMessage());
+            return ERROR_PAGE;
         }
     }
 
     @GetMapping("/put-money")
     public String putMoney(@ModelAttribute("putcash") PutCashRequestDTO putCashRequestDTO) {
-        return "put-money";
+        return PUT_MONEY_PAGE;
     }
 
     @PostMapping("/put-money-result")
@@ -100,10 +112,10 @@ public class CashMachineController {
                             putCashRequestDTO.getAmount1000(),
                             putCashRequestDTO.getAmount500(),
                             putCashRequestDTO.getAmount100()));
-            return "put-money-result";
+            return PUT_MONEY_RESULT_PAGE;
         } catch (Exception e) {
-            model.addAttribute("errormsg", e.getMessage());
-            return "error";
+            model.addAttribute(ERROR_MSG_ATTRIBUTE, e.getMessage());
+            return ERROR_PAGE;
         }
     }
 

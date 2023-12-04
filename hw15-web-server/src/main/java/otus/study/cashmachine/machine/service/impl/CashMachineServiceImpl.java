@@ -2,7 +2,6 @@ package otus.study.cashmachine.machine.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import otus.study.cashmachine.bank.service.AccountService;
 import otus.study.cashmachine.bank.service.CardService;
 import otus.study.cashmachine.machine.data.CashMachine;
 import otus.study.cashmachine.machine.service.CashMachineService;
@@ -18,15 +17,12 @@ import java.util.List;
 public class CashMachineServiceImpl implements CashMachineService {
 
     private final CardService cardService;
-
-    private final AccountService accountService;
-
     private final MoneyBoxService moneyBoxService;
     private final CashMachine machine;
 
     @Override
     public List<Integer> getMoney(String cardNum, String pin, BigDecimal amount) {
-        BigDecimal sum = cardService.getMoney(cardNum, pin, amount);
+        cardService.getMoney(cardNum, pin, amount);
         try {
             return moneyBoxService.getMoney(machine.getMoneyBox(), amount.intValue());
         } catch (Exception e) {
